@@ -39,14 +39,14 @@ jobs:
         run: |
           npm i -g @antfu/ni
           nci
-          nr build --base /${{github.event.repository.name}}/slides/tutorial --out ../../site/slides/docs
+          nr build --base /${{github.event.repository.name}}/slides/docs --out ../../site/slides/docs
 
       - name: env slides
-        working-directory: slides/paper
+        working-directory: slides/env
         run: |
           npm i -g @antfu/ni
           nci
-          nr build --base /${{github.event.repository.name}}/slides/paper --out ../../site/slides/env
+          nr build --base /${{github.event.repository.name}}/slides/env --out ../../site/slides/env
 
       - run: ls -R ./site
 
