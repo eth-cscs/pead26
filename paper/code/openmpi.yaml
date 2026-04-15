@@ -1,0 +1,8 @@
+mpi:
+  spec: openmpi@git.feature-5.0.6=main
+  depends:
+  - libfabric@git.lnx_refactor_main=main +debug fabrics=lnx,cxi,rxm,tcp,shm dev_path=/scratch/libfabric
+  - libcxi@main
+  - cxi-driver@main
+  - cassini-headers@main
+  xspec: +cuda +debug +internal-pmix fabrics=cma,ofi,xpmem schedulers=slurm +cray-xpmem

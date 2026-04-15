@@ -1,0 +1,177 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{algorithmic}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{cite}
+\usepackage{dirtree}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{tikzpeople}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{xspace}
+
+\usetikzlibrary{positioning, arrows.meta}
+
+\usetikzlibrary{pgfplots.groupplots}
+
+\newcommand{\crayex}{HPE Cray EX\xspace} % standardize name for Cray EX platform
+\newcommand{\squashfs}{SquashFS\xspace} % standardize name for squashfs
+\newcommand{\craympich}{Cray-MPICH\xspace} % standardize name for cray mpich
+\newcommand{\stackinator}{Stackinator\xspace} % standardize name the stackinator tool
+\newcommand{\spack}{Spack\xspace} % standardize name for spack
+\newcommand{\todo}[1]{\textbf{\textcolor{blue}{TODO: #1}}} % add a comment to the article
+\newcommand{\assign}[1]{\textbf{\textcolor{blue!20!red}{TODO: #1}}} % add a comment to the article
+\newcommand{\hilight}[1]{\textbf{\textcolor{blue!20!red}{#1}}} % add a comment to the article
+\newcommand{\tocite}[1]{\textbf{\textcolor{blue!20!red}{[#1]}}} % mark missing citation
+\newcommand{\sect}[1]{Section~\ref{#1}\xspace}  % consistent references to sections
+\newcommand{\tbl}[1]{Table~\ref{#1}\xspace}  % consistent references to tables
+\newcommand{\fig}[1]{Fig.~\ref{#1}\xspace}   % consistent references to figures
+\newcommand{\eq}[1]{(\ref{#1})\xspace}   % consistent references to equations
+\newcommand{\lst}[1]{\lstinline{#1}\xspace}   % shorthand for inline listing
+\newcommand{\libfabric}{libfabric\xspace} % standardize name for cray mpich
+\newcommand{\xpmem}{XPMEM\xspace} % standardize name for cray mpich
+\newcommand{\slingshot}{Slingshot\xspace} % standardize name for cray mpich
+\newcommand{\openmpi}{OpenMPI\xspace} % standardize name for cray mpich
+\newcommand{\nvshmem}{NVSHMEM\xspace} % standardize name for cray mpich
+\newcommand{\cufftmp}{cuFFTMp\xspace} % standardize name for cray mpich
+\newcommand{\cusolvermp}{cuSOLVERMp\xspace} % standardize name for cray mpich
+\newcommand{\slurm}{SLURM\xspace} % standardize name for cray mpich
+\newcommand{\miniheader}[1]{\noindent\textsc{#1}\rule{0em}{1.2\baselineskip}\vspace{0.5\baselineskip}}
+
+\input{listing-spec.tex}
+\renewcommand\DTstyle{\footnotesize\tt}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\lstset{
+    literate={~} {$\sim$}{1}
+}
+\begin{document}
+
+\title{Modern Software Deployment on a Multi-Tenant Cray-EX System}
+
+\author{
+    \IEEEauthorblockN{John Biddiscombe}
+    \IEEEauthorblockA{
+        \textit{ETH Z\"urich, Swiss National}\\\textit{Supercomputing Center (CSCS)}\\
+        Lugano, Switzerland \\
+        john.biddiscombe@cscs.ch} \\
+    \IEEEauthorblockN{Ben Cumming}
+    \IEEEauthorblockA{
+        \textit{ETH Z\"urich, Swiss National}\\\textit{Supercomputing Center (CSCS)}\\
+        Lugano, Switzerland \\
+        bcumming@cscs.ch}
+    \and
+    \IEEEauthorblockN{Andreas Fink}
+    \IEEEauthorblockA{
+        \textit{ETH Z\"urich, Swiss National}\\\textit{Supercomputing Center (CSCS)}\\
+        Lugano, Switzerland \\
+        andreas.findk@cscs.ch} \\
+    \IEEEauthorblockN{Simon Pintarelli}
+    \IEEEauthorblockA{
+        \textit{ETH Z\"urich, Swiss National}\\\textit{Supercomputing Center (CSCS)}\\
+        Lugano, Switzerland \\
+        simon.pintarelli@cscs.ch}
+}
+
+\makeatletter
+\tikzset{
+    database/.style={
+        path picture={
+            \draw (0, 1.5*\database@segmentheight) circle [x radius=\database@radius,y radius=\database@aspectratio*\database@radius];
+            \draw (-\database@radius, 0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+            \draw (-\database@radius,-0.5*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius];
+            \draw (-\database@radius,1.5*\database@segmentheight) -- ++(0,-3*\database@segmentheight) arc [start angle=180,end angle=360,x radius=\database@radius, y radius=\database@aspectratio*\database@radius] -- ++(0,3*\database@segmentheight);
+        },
+        minimum width=2*\database@radius + \pgflinewidth,
+        minimum height=3*\database@segmentheight + 2*\database@aspectratio*\database@radius + \pgflinewidth,
+    },
+    database segment height/.store in=\database@segmentheight,
+    database radius/.store in=\database@radius,
+    database aspect ratio/.store in=\database@aspectratio,
+    database segment height=0.1cm,
+    database radius=0.25cm,
+    database aspect ratio=0.35,
+}
+\makeatother
+
+\maketitle
+
+\begin{abstract}
+    \input{abstract.tex}
+\end{abstract}
+
+\begin{IEEEkeywords}
+CPE, spack, squashfs, slurm, gitops
+\end{IEEEkeywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:introduction}
+\input{introduction.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objectives}
+\label{sec:objectives}
+\input{objectives.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Cray Programming Environment (CPE)}
+\label{sec:cpe}
+\input{cpe.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methods}
+\label{sec:methods}
+\input{methods.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{CPE in a Container}
+\label{sec:cpe-container}
+\input{cpe-in-a-container.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Use Cases}
+\label{sec:usecases}
+\input{usecases.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+\label{sec:discussion}
+\input{discussion.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Future Work}
+\label{sec:future}
+\input{future.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: before submission, use this to balance the columns on the last page
+%\vfill\eject
+
+%*************************************************
+\bibliographystyle{abbrv}
+\bibliography{refs}
+%*************************************************
+
+\end{document}
+
+%%% Local Variables:
+%%% TeX-engine: default
+%%% End:

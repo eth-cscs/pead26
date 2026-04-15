@@ -1,0 +1,27 @@
+This section presents the components of CSCS' software deployment workflow, following the complete lifecycle from initial software compilation through to end-user interaction.
+We examine three key stages: the building of software components with their specific dependencies and optimizations, the deployment mechanisms across diverse computational environments, and the CLI and SLURM tools that provide these environments to users.
+%This structured approach allows us to thoroughly address the complexities inherent in managing scientific software on large-scale HPC systems.
+
+%------------------------------------------------------------------------------
+\subsection{Building Software: Stackinator}
+\label{sec:stackinator}
+%------------------------------------------------------------------------------
+\input{stackinator.tex}
+
+%------------------------------------------------------------------------------
+\subsection{Deployment: CI/CD}
+\label{sec:cicd}
+%------------------------------------------------------------------------------
+\input{cicd.tex}
+
+%------------------------------------------------------------------------------
+\subsection{User Experience: the uenv CLI}
+\label{sec:cli}
+%------------------------------------------------------------------------------
+\input{uenv.tex}
+
+%------------------------------------------------------------------------------
+\subsection{User Experience: SLURM}
+\label{sec:slurm}
+%------------------------------------------------------------------------------
+\input{slurm.tex}
