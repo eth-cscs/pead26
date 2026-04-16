@@ -14,7 +14,6 @@ plugins:
   - autorefs
 nav:
   - Welcome: index.md
-  - 'Environments BoF': env.md
   - 'Docs BoF': docs.md
 
 theme:
