@@ -3,11 +3,11 @@
 
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-layer-group: __PEAD__
+-   :fontawesome-solid-layer-group: __Environments BoF__
 
-    Date: Sunday 1:05pm-1:45pm ("CPE in a Container" BoF at PEAD)
+    In this BoF sites will show how they provide software environments to their user communities, with a focus on how the CPE is used, and their wishes for CPE going forward.
 
-    [:octicons-arrow-right-24: CPE in a container slides](https://eth-cscs.github.io/cug25-uenv/slides/cpe)
+    [:octicons-arrow-right-24: CSCS slides](https://eth-cscs.github.io/pead26/slides/env)
 
 </div>
 
@@ -17,10 +17,7 @@
 
     This BoF will foster an exchange of best practices and ideas for user-facing documentation, based on the experiences of these engineers who maintain docmumentation infrastructure and write the documentation.
 
-    Sunday  3:15-4:15pm
-
-
-    [:octicons-arrow-right-24: Introduction][ref-docs]
+    [:octicons-arrow-right-24: Introduction][ref-docs-bof]
 
     [:octicons-arrow-right-24: CSCS slides](https://eth-cscs.github.io/pead26/slides/docs)
 
