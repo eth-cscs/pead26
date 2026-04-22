@@ -17,16 +17,12 @@ layoutClass: gap-2
 
 # Alps
 
-* CSCS deploys **vCluster**s on a single HPE Cray EX system **Alps**
-    - 6 node types
-    - over 10 prod. use-case specific clusters
-* CSCS' approach reflects the reality that providing bespoke environments on top of CPE does not scale to `N+1` systems.
-
-<br>
+CSCS deploys **vCluster**s on a single HPE Cray EX system **Alps**
+- 6 node types
+- over 10 use-case specific production clusters
 
 CSCS does not provide CPE directly installed on our systems
-
-* CPE is deprecated on one remaining system
+- CPE is deprecated on one remaining system
 
 ::right::
 
@@ -46,15 +42,21 @@ layoutClass: gap-2
 
 # Containers and uenv
 
+CSCS provides two ways to set up software environments:
+* CSCS provides **uenv**.
+* users can bring their own **containers**.
+
 ::left::
 
 ## uenv
 
 * Use Spack to build self-contained environments
-    * cray-mpich is repackaged as a Spack package
-    * libfabric is built or pulled from system
+    * cray-mpich RPM is repackaged for Spack
+    * libfabric is built-in or pulled from system
 * Each env is a SquashFS file stored in a registry
 * Lightweight CLI runner and SLURM plugin mount the SquashFS and set environment variables
+
+<br>
 
 ::right::
 
@@ -63,7 +65,7 @@ layoutClass: gap-2
 * Use Podman to build containers
 * Convert containers to SquashFS images
 * SLURM plugin mounts and chroots
-* Hooks extend containers with native network support, NCCL-aws-ofi plugin, GPUs (NVIDIA and AMD), etc. into running containers.
+* Hooks extend containers with native network support, NCCL-aws-ofi plugin, GPUs (NVIDIA and AMD), etc.
 
 ---
 
@@ -73,27 +75,33 @@ layoutClass: gap-2
     <img src="./images/stack.png" class="h-65" alt="Alt text for the image">
 </div>
 
-Observation: Conway's law dictates that `libfabric` and `libcxi` being developed outside of the CPE team matterst to sites.
+Observation: Conway's law might explain the different deployment of `libfabric`+`libcxi` and `cray-mpich` and its dependencies.
 
 ---
 
-# How HPE can make CSCS happy
+# HPE are going in the right direction...
 
-Open source cray-mpich and its dependencies:
+* Open source cray-mpich and its dependencies:
+    * it is getting harder to support the matrix of `aarch64`x`x86_64`, `NVIDIA`x`AMD`x`CPU only`, `SP5`x`SP6`x`SP7`, `GNU`x`NVFortran`x`intel`x`LLVM` versions
+    * CPE components are the last closed source user-facing software from HPE used in our stacks
 
-* it is getting harder to support the matrix of `aarch64`x`x86_64`, `NVIDIA`x`AMD`x`CPU only`, `SP5`x`SP6`x`SP7` versions
-* Observation: the open source software is developed outside CPE
+* Commit to flexible deployment of packages:
+    * parts of the stack are still designed to be released monolithically (e.g. libcxi + cxi-driver)
+    * Integrate aws-ofi-nccl, nvshmem/openshmem into the support matrix
+    * we lost access to the the "experimental" RPM repository for a few weeks with no explanation
 
-Commit to flexible deployment of packages
-
-* we lost access to the the "experimental" RPM repository for a few weeks with no explanation
-
-Take ownership of first class support for NVSHMEM, etc.
-
-Support up to date GPU drivers
-
-* Conway's law says it _is_ your responsibility
+* Support up to date GPU drivers
+    * From customer's perspective **_it is a CPE problem_**.
 
 ---
 
-# What to avoid
+# HPE should avoid...
+
+I think things are generally going in the right direction - but not fast enough.
+
+HPE/Cray have always provided a better user-facing softare experience
+* that advantage is being eroded
+* CPE is dragging its feet
+
+Commit to support and develop all the components required to take advantage of the HPE network special sauce
+
