@@ -4,6 +4,8 @@
 Submit a link to a piece of documentation you'd like to share with the group — good, bad, or somewhere in between.
 Submissions are publicly visible to everyone.
 
+[![QR code for this page](api.qrserver.png){ width=160 }](https://eth-cscs.github.io/pead26/submissions/)
+
 <style>
 .bof-section { margin: 1.5rem 0; }
 .bof-form label {
@@ -98,9 +100,9 @@ Submissions are publicly visible to everyone.
     <label for="sub-category">Category *</label>
     <select id="sub-category" required>
       <option value="">— select one —</option>
-      <option value="great">Great example</option>
-      <option value="interesting">Interesting story</option>
-      <option value="dragons">Here be dragons</option>
+      <option value="great">Good Docs</option>
+      <option value="dragons">Here be Dragons</option>
+      <option value="interesting">Interesting Docs</option>
     </select>
 
     <label for="sub-notes">Notes</label>

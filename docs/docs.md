@@ -18,6 +18,8 @@ This BoF will foster an exchange of best practices and ideas for user-facing doc
 
 Submit examples via the **[Doc Submissions](submissions.md)** page — no account needed, all submissions are publicly visible.
 
+[![QR code for submissions page](api.qrserver.png){ width=160 }](submissions.md)
+
 Submit examples of your favourite from your site's documentation
 
 - examples of great docs;
