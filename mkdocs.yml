@@ -15,6 +15,7 @@ plugins:
 nav:
   - Welcome: index.md
   - 'Docs BoF': docs.md
+  - 'Doc Submissions': submissions.md
 
 theme:
   name: material

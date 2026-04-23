@@ -16,6 +16,8 @@ This BoF will foster an exchange of best practices and ideas for user-facing doc
 
 ## Audience participation
 
+Submit examples via the **[Doc Submissions](submissions.md)** page — no account needed, all submissions are publicly visible.
+
 Submit examples of your favourite from your site's documentation
 
 - examples of great docs;
