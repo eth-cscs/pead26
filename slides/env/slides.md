@@ -65,10 +65,10 @@ Both approaches allow normal users to build and deploy full stacks without root 
 
 ## containers
 
-* Use Podman to build containers
-* Convert containers to SquashFS images
-* SLURM plugin mounts and chroots
-* Hooks extend containers with native network support, NCCL-aws-ofi plugin, GPUs (NVIDIA and AMD), etc.
+* Pull images from registry or build with Podman
+* Convert OCI images to SquashFS
+* Slurm plugin starts container & executes command inside
+* Hooks extend containers with native network, GPU, etc
 
 ---
 
@@ -78,24 +78,25 @@ Both approaches allow normal users to build and deploy full stacks without root 
     <img src="./images/stack.png" class="h-65" alt="Alt text for the image">
 </div>
 
-Observation: Conway's law might explain the different deployment of `libfabric`+`libcxi` and `cray-mpich` and its dependencies.
+**Observation:**
+
+Conway's law might explain the different deployment of `libfabric`+`libcxi` and `cray-mpich` and its dependencies.
 
 ---
 
 # HPE are going in the right direction...
 
-* Open source cray-mpich and its dependencies:
+* Open source cray-mpich and its dependencies alongside Slingshot products:
     * it is getting harder to support the matrix of `aarch64`x`x86_64`, `NVIDIA`x`AMD`x`CPU only`, `SP5`x`SP6`x`SP7`, `GNU`x`NVFortran`x`intel`x`LLVM` versions
     * CPE components are the last closed source user-facing software from HPE used in our stacks
 
-* Commit to flexible deployment of packages:
-    * parts of the stack are still designed to be released monolithically (e.g. libcxi + cxi-driver)
+* Commit to well-documented+felxible deployment of packages:
+    * parts of the stack are still designed to be released monolithically (e.g. libcxi + cxi-driver + cxi-provider)
     * Integrate aws-ofi-nccl, nvshmem/openshmem into the support matrix
     * we lost access to the the "experimental" RPM repository for a few weeks with no explanation
 
 * Support up-to-date GPU drivers
     * From the customer's perspective **_it is a CPE problem_**.
-
 
 ---
 
@@ -103,15 +104,13 @@ Observation: Conway's law might explain the different deployment of `libfabric`+
 
 Handing off responsibility to support and develop any of the components required to take advantage of the HPE network special sauce.
 
-I think things are generally going in the right direction - but slowly.
-
-**HPE/Cray have always provided a better user-facing software experience**:
+Things are generally going in the right direction - but slowly in some cases.
+* **HPE/Cray have always provided a better user-facing software experience**:
 * How some centers want to deploy is at odds with the CPE deployment - don't lose your advantage.
 
 ---
 
-# We are nearly there
+# Where we want to be
 
-An open source cray-mpich would allow us to install a complete HPE Cray EX optimised software stack using Spack from one configuration file.
+An open source cray-mpich would allow users (no root!) to install a complete HPE Cray EX optimised software stack using Spack from one configuration file.
 
-I won't have to repackage RPMs or maintain tools like Stackinator.

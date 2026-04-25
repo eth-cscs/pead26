@@ -23,3 +23,73 @@
 
 </div>
 
+## Schedule
+
+<table>
+  <thead>
+    <tr>
+      <th>Session</th>
+      <th>Time</th>
+      <th>Activity</th>
+      <th>Presenter(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><strong>Environments BoF</strong></td>
+      <td>1:05</td>
+      <td>Introduction</td>
+      <td>Ben Cumming</td>
+    </tr>
+    <tr>
+      <td>1:10</td>
+      <td>Site presentations (7 min each)</td>
+      <td>Nick Hagerty (ORNL)<br>Cedric Jourdain (CINES)<br>Paul Ferrel (LANL)<br>Ben Cumming (CSCS)<br>Richard Gilham (Bristol)</td>
+    </tr>
+    <tr>
+      <td>1:45</td>
+      <td>Panel and Q&amp;A</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="2"><strong>CPE Topics</strong></td>
+      <td>2:10</td>
+      <td>HPE Presentation</td>
+      <td>Pete Madrygal</td>
+    </tr>
+    <tr>
+      <td>2:40</td>
+      <td>Panel and Q&amp;A</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Coffee Break</strong></td>
+      <td>3:00–3:15</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3"><strong>Read the Docs BoF</strong></td>
+      <td>3:15</td>
+      <td>Introduction</td>
+      <td>Ben Cumming</td>
+    </tr>
+    <tr>
+      <td>3:20</td>
+      <td>Site presentations (8 min each)</td>
+      <td>Chris Fuson (ORNL)<br>Ben Cumming (CSCS)<br>Juan Herrera (EEPCC)<br>Richard Gilham (Bristol)</td>
+    </tr>
+    <tr>
+      <td>4:00</td>
+      <td>Panel and Q&amp;A</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Overflow</strong></td>
+      <td>4:30–5:00</td>
+      <td>Overflow and other topics</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
