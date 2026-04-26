@@ -1,5 +1,7 @@
 ---
 theme: ./slidev-theme-cscs
+#contextMenu: false
+title: documentation
 ---
 
 ## User Documentation at CSCS
@@ -21,64 +23,68 @@ layoutClass: gap-2
 
 ::left::
 
-**<div class="text-center">How</div>**
-
-- Low coverage of key topics
-- Out of date information
-- Different visual and writing style across sections
-- `<opinion>`It looked "naff"`</opinion>`
-- Staff were frustrated with it
-    * `<opinion>`fixing it felt "too big"`</opinion>`
-- Useful information was in FAQs
-    * `<opinion>`FAQs are not docs`</opinion>`
-
-::right::
-
 **<div class="text-center">What</div>**
 
 - We used a content managent system (CMS)
     * Confluence<br>`<opinion>` ☠️❗💣💩  `</opinion>` 
 - There was one person responsible for the docs
     * Role was to politely ask groups for submissions
-- There was no "CSCS style"
+
+
+::right::
+
+**<div class="text-center">How</div>**
+
+- Low coverage of key topics
+- Out of date information
+- Varying visual and writing style
+- Staff were frustrated
+    * `<opinion>`fixing it felt "too big"`</opinion>`
+
+<br>
+<br>
+<br>
+<br>
 
 ---
 
 # Confluence challenges
 
-The path of least resistance after CSCS adopted Confluence+Jira for internal use.
-* docs are written by technical staff who wouldn't choose Confluence
-* WYSIWYG editor is preferred by non-technical people
+Confluence was **path of least resistance** after CSCS adopted Atlasian for internal use.
+* WYSIWYG editor is preferred by non-technical staff
+* Docs are written by technical staff who wouldn't choose Confluence
 
 Separate [Production](https://confluence.cscs.ch/spaces/KB/overview) and [TDS](https://confluence.cscs.ch/spaces/KBTDS/overview) instances.
 * change management was manual and error prone: copy pages from TDS to Production.
 * broken links everywhere (copying from TDS to Prod required updating links)
+* reviewing of contributions was unstructured
 * no clean history of changes
 
-Confluence search (if you know, you know)
-
-`<opinion>`Confluence looks and feels like... Confluence.`</opinion>`
+Also, Confluence search
+* if you know, you know
 
 ---
 
 # Process
 
-* Individual teams responsible for their own documentation
-    * islands of documentation
-    * teams would reproduce other docs in their section instead of linking and updating other areas
+* Individual teams fully responsible for their documentation:
+    * islands of documentation;
+    * teams would reproduce other docs in their section instead of linking and updating other areas.
 
 * Little oversight of the documentation as a while
-    * different "styles" and philosophies about what should be in the docs
+    * different "styles" and philosophies about what should be in the docs;
+    * very little linking between pages.
 
 * We started to optimize around Confluence search
-    * An FAQ article was more likely to show up in search
+    * One FAQ question per page -> more likely to show up in search
 
 ---
 
 # The change
 
-1. A small group of frustrated engineers tried to fix the styling and content
+1. A small group of engineers tried to fix the styling and content:
     * the TDS was now completely out of sync with production
+    * they work stalled
 2. I created a small [mock up](https://bcumming.github.io/kb-poc/) vertical slice using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
     * **one hour** to style it and set up CI/CD for build and deploy to GitHub Pages
     * **one day** to copy and update the content
@@ -96,41 +102,36 @@ Confluence search (if you know, you know)
 
 [Live demo](https://docs.cscs.ch)
 
-- look and feel
-- organisation
-- pull request
-    - TDS
-
 ---
 
 # Benefits of MkDocs
 
-Docs as code let's engineers use familiar tools
+Docs as code lets engineers use familiar tools
+- git, vim/emacs/vs-code, GitHub workflow
 - clear history: multi-page edits are clearer
-- CI/CD checks links and spelling
+- CI/CD checks links and spelling, and handles deployment
 
 Markdown is not rich and MkDocs is simple to deploy
 - focus on the content and don't fight styling
     - _except tables_: most contributors use html tables
 - all engineers can own the deployment
 
-Static docs are fast: to load and deploy
+Static docs are fast to load and deploy
 
 ---
 
 # New philosophy
 
-- Updates to any part of the docs are encouraged
-    - Request review from docs owners---if no response core team reviews and merges
-- Incomplete docs are better than no docs
-- Harmonised docs require central control
+- Everybody can contribute to any part of the docs
+    - Request review from docs owners---core team reviews and merges if no timely response
+- Harmonised docs require _some_ central control
     - Core team rewrites and refactors contributions
-        - easier than 
+        - easier than asking busy engineers to do this on top of writing
     - Take the time to discuss contributions beforehand
 
 Not everybody was pleased with the change
-- A small percentage liked WYSIWYG
-- A small percentage liked zero oversight
+- A handful of engineers liked WYSIWYG
+- A handful of engineers don't like guidelines
 
 ---
 
@@ -138,7 +139,8 @@ Not everybody was pleased with the change
 
 - We are getting more contributions written by AI Agents
     - They ignore our style guide (just like humans!)
-- We get small fixes from our community---but nothing major
-- Contributions from non-tech people
-    - User facing docs are >90% technical in our case
+- We get small fixes from our community---but nothing significant
+- Contributions from non-technical people
+    - User facing docs are >95% technical in our case
+- FAQs are lazy writing, amiright?
 
