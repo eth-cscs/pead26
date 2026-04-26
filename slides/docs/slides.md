@@ -30,7 +30,6 @@ layoutClass: gap-2
 - There was one person responsible for the docs
     * Role was to politely ask groups for submissions
 
-
 ::right::
 
 **<div class="text-center">How</div>**
@@ -70,10 +69,7 @@ Also, Confluence search
 * Individual teams fully responsible for their documentation:
     * islands of documentation;
     * teams would reproduce other docs in their section instead of linking and updating other areas.
-
-* Little oversight of the documentation as a while
     * different "styles" and philosophies about what should be in the docs;
-    * very little linking between pages.
 
 * We started to optimize around Confluence search
     * One FAQ question per page -> more likely to show up in search
@@ -90,7 +86,7 @@ Also, Confluence search
     * **one day** to copy and update the content
 3. Very positive reaction from engineers
     * a self-appointed **benevolent committee for documentation** was formed
-    * **one month part time** for me to port all existing docs
+    * **two months part time** for me to port all existing docs
 4. Little push-back
     * `<opinion>`speak up tool loudly and you might own the docs`</opinion>`
 
@@ -100,23 +96,31 @@ Also, Confluence search
 
 `<opinion>`CSCS user docs are now quite good`</opinion>`
 
-[Live demo](https://docs.cscs.ch)
+[Live demo](https://docs.cscs.ch) at `docs.cscs.ch`
+
+<br>
+<br>
+
+<div class="flex justify-center">
+    <img src="./images/pr-link.png" class="h-65" alt="Alt text for the image">
+</div>
 
 ---
 
-# Benefits of MkDocs
+# Benefits of GitHub + Material for MkDocs
 
-Docs as code lets engineers use familiar tools
+Docs as code lets engineers use familiar tools:
 - git, vim/emacs/vs-code, GitHub workflow
-- clear history: multi-page edits are clearer
+- clear history: multi-page edits are encapsulated in a PR
 - CI/CD checks links and spelling, and handles deployment
 
 Markdown is not rich and MkDocs is simple to deploy
-- focus on the content and don't fight styling
-    - _except tables_: most contributors use html tables
-- all engineers can own the deployment
+- focus on the content and just accept the styling
+    - _except tables_: many contributors use html tables
+- engineers own the deployment process
 
 Static docs are fast to load and deploy
+* and they don't go down for maintenance
 
 ---
 
@@ -124,7 +128,7 @@ Static docs are fast to load and deploy
 
 - Everybody can contribute to any part of the docs
     - Request review from docs owners---core team reviews and merges if no timely response
-- Harmonised docs require _some_ central control
+- Harmonised docs require **some level of central coordination**
     - Core team rewrites and refactors contributions
         - easier than asking busy engineers to do this on top of writing
     - Take the time to discuss contributions beforehand
@@ -137,6 +141,8 @@ Not everybody was pleased with the change
 
 # Topics for discussion
 
+- The future of Material for MkDocs
+    - it took 5 minutes to adapt to Zensical
 - We are getting more contributions written by AI Agents
     - They ignore our style guide (just like humans!)
 - We get small fixes from our community---but nothing significant

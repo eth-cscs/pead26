@@ -22,8 +22,7 @@ CSCS deploys **vCluster**s on a single HPE Cray EX system **Alps**
 - over 10 use-case specific production clusters
 
 CSCS is migrating away from installing CPE on vClusters
-- CPE is provided in containers
-- It is still installed on one cluster where it is marked as deprecated
+- CPE is still provided in containers
 
 ::right::
 
@@ -34,7 +33,6 @@ CSCS is migrating away from installing CPE on vClusters
 <div class="flex justify-center">
     <img src="./images/alps-blah.png" class="h-65" alt="Alt text for the image">
 </div>
-
 
 ---
 layout: two-cols-header
@@ -78,25 +76,20 @@ Both approaches allow normal users to build and deploy full stacks without root 
     <img src="./images/stack.png" class="h-65" alt="Alt text for the image">
 </div>
 
-**Observation:**
-
-Conway's law might explain the different deployment of `libfabric`+`libcxi` and `cray-mpich` and its dependencies.
-
 ---
 
 # HPE are going in the right direction...
 
-* Open source cray-mpich and its dependencies alongside Slingshot products:
-    * it is getting harder to support the matrix of `aarch64`x`x86_64`, `NVIDIA`x`AMD`x`CPU only`, `SP5`x`SP6`x`SP7`, `GNU`x`NVFortran`x`intel`x`LLVM` versions
-    * CPE components are the last closed source user-facing software from HPE used in our stacks
+* **Open source cray-mpich and its dependencies** alongside Slingshot products:
+    * it is getting very hard to support the matrix of `aarch64`x`x86_64`, `NVIDIA`x`AMD`x`CPU only`, `SP5`x`SP6`x`SP7`, `GNU`x`NVFortran`x`intel`x`LLVM`
 
-* Commit to well-documented+felxible deployment of packages:
+* Commit to well-documented+flxible deployment of packages:
     * parts of the stack are still designed to be released monolithically (e.g. libcxi + cxi-driver + cxi-provider)
     * Integrate aws-ofi-nccl, nvshmem/openshmem into the support matrix
-    * we lost access to the the "experimental" RPM repository for a few weeks with no explanation
 
 * Support up-to-date GPU drivers
     * From the customer's perspective **_it is a CPE problem_**.
+    * The same is true for libfabric
 
 ---
 
