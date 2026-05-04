@@ -93,3 +93,14 @@
   </tbody>
 </table>
 
+## Presentation
+
+| session | site | slides |
+| ------- | ---- | ------ |
+| environments | Bristol | [powerpoint][slides/env-bristol.pptx]     |
+| environments | CINES   | [powerpoint][slides/env-cines.pptx]       |
+| environments | ORNL    | [powerpoint][slides/env-ornl.pptx]        |
+| environments | CSCS    | [web](https://eth-cscs.github.io/pead26/slides/env) |
+| read the docs| Bristol | [powerpoint][slides/docs-bristol.pptx]    |
+| read the docs| ORNL    | [powerpoint][slides/docs-ornl.pptx]       |
+| read the docs| CSCS    | [web](https://eth-cscs.github.io/pead26/slides/docs) |
